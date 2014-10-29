@@ -18,6 +18,7 @@ for name in bindings:
     try:
         binding = __import__(name)
         break
+
     except ImportError:
         continue
 
@@ -274,8 +275,9 @@ class Ghost(object):
             download_images=True,
             qt_debug=False,
             show_scrollbars=True,
+            no_sslv3 = True,
             network_access_manager_class=None):
-
+    
         self.http_resources = []
 
         self.user_agent = user_agent
@@ -301,6 +303,15 @@ class Ghost(object):
             if plugin_path:
                 for p in plugin_path:
                     Ghost._app.addLibraryPath(p)
+
+
+
+        if no_sslv3:
+            # enable tls1 only
+            old = QSslConfiguration.defaultConfiguration()
+            old.setProtocol(QSsl.TlsV1)
+            QSslConfiguration.setDefaultConfiguration(old)
+
 
         self.popup_messages = []
         self.page = GhostWebPage(Ghost._app, self)
