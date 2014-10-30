@@ -66,6 +66,8 @@ QNetworkCookieJar = QtNetwork.QNetworkCookieJar
 QNetworkDiskCache = QtNetwork.QNetworkDiskCache
 QNetworkProxy = QtNetwork.QNetworkProxy
 QNetworkCookie = QtNetwork.QNetworkCookie
+QSslConfiguration = QtNetwork.QSslConfiguration
+QSsl = QtNetwork.QSsl
 
 QtWebKit = _import('QtWebKit')
 
