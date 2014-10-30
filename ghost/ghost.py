@@ -17,6 +17,7 @@ binding = None
 for name in bindings:
     try:
         binding = __import__(name)
+        from binding import QSslConfiguration, QSsl
         break
 
     except ImportError:
@@ -277,7 +278,7 @@ class Ghost(object):
             show_scrollbars=True,
             no_sslv3 = True,
             network_access_manager_class=None):
-    
+
         self.http_resources = []
 
         self.user_agent = user_agent
@@ -308,6 +309,7 @@ class Ghost(object):
 
         if no_sslv3:
             # enable tls1 only
+
             old = QSslConfiguration.defaultConfiguration()
             old.setProtocol(QSsl.TlsV1)
             QSslConfiguration.setDefaultConfiguration(old)
